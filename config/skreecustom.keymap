@@ -11,6 +11,15 @@
 #include <dt-bindings/zmk/keys.h>
 
 / {
+    combos {
+        compatible = "zmk,combos";
+
+        Sel_Bluetooth_Profile_Next {
+            bindings = <&bt BT_NXT>;
+            key-positions = <36 53 54>;
+        };
+    };
+
     keymap {
         compatible = "zmk,keymap";
 
