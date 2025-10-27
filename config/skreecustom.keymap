@@ -47,7 +47,7 @@
 &trans      &trans        &trans        &kp C_AC_DESKTOP_SHOW_ALL_WINDOWS  &trans        &trans      &trans          &mkp LCLK       &mkp RCLK      &trans           &trans           &trans
 &trans      &trans        &kp K_CALC    &trans                             &mkp MB1      &mkp MB2    &msc SCRL_LEFT  &msc SCRL_DOWN  &msc SCRL_UP   &msc SCRL_RIGHT  &trans           &trans
                                                                                          &trans
-                                        &bootloader                        &trans        &trans      &trans          &trans          &trans
+                                        &bootloader                        &trans        &trans      &bootloader     &trans          &trans
                                         &trans                             &trans        &trans      &trans          &trans          &trans
             >;
 
