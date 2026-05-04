@@ -18,14 +18,9 @@
 #   
 ---
 include:
-#   - board: nice_nano
-#     shield: lily58_left
-#   - board: nice_nano
-#     shield: lily58_right
   - board: seeeduino_xiao_ble
     shield: skreecustom_left
-    snippet: studio-rpc-usb-uart
   - board: seeeduino_xiao_ble
     shield: skreecustom_right
-  - board: seeeduino_xiao_ble
-    shield: settings_reset 
+#  - board: seeeduino_xiao_ble
+#    shield: settings_reset 
