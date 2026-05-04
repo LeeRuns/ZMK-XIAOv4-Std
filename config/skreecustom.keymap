@@ -4,58 +4,97 @@
  * SPDX-License-Identifier: MIT
  */
 
-//#include <behaviors/mouse_keys.dtsi>
+#include <input/processors.dtsi>
+#include <dt-bindings/zmk/input_transform.h>
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/keys.h>
-#include <dt-bindings/zmk/rgb.h>
+#include <dt-bindings/zmk/pointing.h>
 
 / {
+    combos {
+        compatible = "zmk,combos";
+
+        Sel_Bluetooth_Profile_Next {
+            bindings = <&bt BT_NXT>;
+            key-positions = <36 53 54>;
+        };
+    };
+
     keymap {
         compatible = "zmk,keymap";
 
         default_layer {
             bindings = <
-&kp ESC       &kp N1  &kp N2  &kp N3     &kp N4     &kp N5      &kp N6   &kp N7    &kp N8     &kp N9   &kp N0    &kp EQUAL
-&kp TAB    &kp Q   &kp W   &kp E      &kp R      &kp T       &kp Y    &kp U     &kp I      &kp O    &kp P     &kp MINUS
-&kp LSHFT  &kp A   &kp S   &kp D      &kp F      &kp G       &kp H    &kp J     &kp K      &kp L    &kp SEMI  &kp SQT
-&kp GRAVE  &kp Z   &kp X   &kp C      &kp V      &kp B       &kp N    &kp M     &kp COMMA  &kp DOT  &kp FSLH  &kp BSLH
-                           &kp LSHFT  &kp SPACE  &kp BSPC    &kp DEL  &kp RET   &kp RGUI
-                           &kp LCTRL  &kp LALT   &mo 1       &mo 2    &kp RALT  &kp RCTRL
+&kp F1     &kp F2  &kp F3  &kp F4     &kp F5            &kp F6              &kp F7   &kp F8     &kp F9         &kp F10  &kp F11   &kp F12
+&kp ESC    &kp N1  &kp N2  &kp N3     &kp N4            &kp N5              &kp N6   &kp N7     &kp N8         &kp N9   &kp N0    &kp MINUS
+&kp TAB    &kp Q   &kp W   &kp E      &kp R             &kp T               &kp Y    &kp U      &kp I          &kp O    &kp P     &kp LBKT
+&kp LSHFT  &kp A   &kp S   &kp D      &kp F             &kp G               &kp H    &kp J      &kp K          &kp L    &kp SEMI  &kp SQT
+&kp GRAVE  &kp Z   &kp X   &kp C      &kp V             &kp B               &kp N    &kp M      &kp COMMA      &kp DOT  &kp FSLH  &kp BSLH
+                                                        &kp K_PLAY_PAUSE
+                           &kp LSHFT  &kp SPACE         &mo 1               &mo 2    &kp RET    &kp RSHFT
+                           &kp LALT   &kp LEFT_CONTROL  &kp BACKSPACE       &kp DEL  &kp RCTRL  &kp RIGHT_ALT
             >;
+
+            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
         };
 
         layer_1 {
             bindings = <
-&bt BT_CLR       &bt BT_SEL 0     &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4    &trans  &trans  &trans  &trans  &trans  &trans
-&studio_unlock   &trans           &trans        &trans        &trans        &trans          &trans  &trans  &trans  &trans  &trans  &trans
-&trans           &trans           &trans        &trans        &trans        &trans          &trans  &trans  &trans  &trans  &trans  &trans
-&rgb_ug RGB_TOG  &rgb_ug RGB_EFF  &trans        &trans        &trans        &trans          &trans  &tog 3  &trans  &trans  &trans  &trans
-                                                &trans        &trans        &bootloader     &trans  &trans  &trans
-                                                &trans        &trans        &trans          &trans  &trans  &trans
+&bt BT_CLR  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2                       &bt BT_SEL 3  &trans      &trans          &trans          &trans         &kp PRINTSCREEN  &kp HOME         &kp END
+&trans      &trans        &trans        &trans                             &trans        &trans      &trans          &trans          &trans         &trans           &trans           &kp EQUAL
+&trans      &trans        &sk LWIN      &trans                             &trans        &kp TAB     &trans          &kp PAGE_UP     &kp PAGE_DOWN  &trans           &kp PRINTSCREEN  &kp RIGHT_BRACKET
+&trans      &trans        &trans        &kp C_AC_DESKTOP_SHOW_ALL_WINDOWS  &trans        &trans      &trans          &mkp LCLK       &mkp RCLK      &trans           &trans           &trans
+&trans      &trans        &kp K_CALC    &trans                             &mkp MB1      &mkp MB2    &msc SCRL_LEFT  &msc SCRL_DOWN  &msc SCRL_UP   &msc SCRL_RIGHT  &trans           &trans
+                                                                                         &trans
+                                        &bootloader                        &trans        &trans      &bootloader     &trans          &trans
+                                        &trans                             &trans        &trans      &trans          &trans          &trans
             >;
+
+            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
         };
 
         layer_2 {
             bindings = <
-&trans  &trans  &trans  &trans  &trans  &trans    &trans       &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans    &trans       &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans    &trans       &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans    &trans       &trans  &trans  &trans  &trans  &trans
-                        &trans  &trans  &trans    &bootloader  &trans  &trans
-                        &trans  &trans  &trans    &trans       &trans  &trans
+&trans  &trans  &trans  &trans        &trans  &trans           &trans    &trans             &trans             &trans     &trans  &trans
+&trans  &trans  &trans  &kp UP_ARROW  &trans  &trans           &trans    &trans             &trans             &trans     &trans  &trans
+&trans  &trans  &trans  &trans        &trans  &trans           &trans    &kp K_SCROLL_DOWN  &kp K_SCROLL_DOWN  &trans     &trans  &trans
+&trans  &trans  &trans  &trans        &trans  &trans           &kp LEFT  &kp DOWN           &kp UP_ARROW       &kp RIGHT  &trans  &trans
+&trans  &trans  &trans  &trans        &trans  &trans           &trans    &trans             &trans             &trans     &trans  &trans
+                                              &kp C_AC_ZOOM
+                        &trans        &trans  &kp N1           &trans    &trans             &bootloader
+                        &trans        &trans  &trans           &trans    &trans             &trans
             >;
+
+            sensor-bindings = <&inc_dec_kp C_AC_ZOOM_IN C_AC_ZOOM_OUT>;
         };
 
-        mac_mode {
+        layer_3 {
             bindings = <
-&trans    &trans    &trans  &trans  &trans  &trans      &trans  &trans    &trans  &trans  &trans    &trans
-&trans    &trans    &trans  &trans  &trans  &trans      &trans  &trans    &trans  &trans  &trans    &trans
-&trans    &trans    &trans  &trans  &trans  &trans      &trans  &trans    &trans  &trans  &trans    &trans
-&trans    &trans    &trans  &trans  &trans  &trans      &trans  &trans    &trans  &trans  &trans    &trans
-                            &trans    &trans    &trans      &trans    &trans    &trans
-                            &kp LGUI  &kp LGUI  &trans      &trans    &kp RGUI  &kp RGUI
+&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
+                                        &trans
+                        &trans  &trans  &trans    &trans  &trans  &trans
+                        &trans  &trans  &trans    &trans  &trans  &trans
             >;
         };
     };
 };
+
+// //right hand trackball overrides
+// &trackball_peripheral_listener {
+//     input-processors =
+//         <&zip_xy_transform INPUT_TRANSFORM_XY_SWAP>,//this gets it to the default installation orientation
+//         <&zip_temp_layer 3 500>;//activate layer 3 within 500ms of the trackball moving
+// };
+// //left hand trackball overrides
+// &trackball_central_listener {
+//     input-processors = 
+//         <&zip_xy_transform INPUT_TRANSFORM_XY_SWAP>,//this gets it to the default installation orientation
+//         <&zip_xy_scaler 1 3>,//multiply sensitivity by 1, divide by 3 (make it slower for scrolling)
+//         <&zip_xy_to_scroll_mapper>,//make this trackball output scrolling events by default instead of cursor movement
+//         <&zip_scroll_transform INPUT_TRANSFORM_Y_INVERT>;//invert vertical scrolling so that the view moves in the same direction as the top of the trackball.
+// };
